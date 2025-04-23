@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editar Despesa</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="container">
+    <h2>Editar Despesa</h2>
+    <form method="POST" id="edit-form">
+      <label for="nome">Nome da Despesa</label>
+      <input type="text" id="nome" name="nome">
+
+      <label for="valor">Valor (R$)</label>
+      <input type="number" step="0.01" id="valor" name="valor">
+
+      <label for="data">Data</label>
+      <input type="date" id="data" name="data">
+
+      <label for="categoria">Categoria</label>
+      <select id="categoria" name="categoria">
+        <option value="Alimentação">Alimentação</option>
+        <option value="Transporte">Transporte</option>
+        <option value="Lazer">Lazer</option>
+        <option value="Saúde">Saúde</option>
+        <option value="Outros">Outros</option>
+      </select>
+
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </div>
+  <script>
+    // Pega o índice da URL
+		const url = new URL(document.location)
+
+    //const urlParams = new URLSearchParams(window.location.search);
+    //const index = urlParams.get("id");  // Por exemplo: /editar.html?index=0
+		const pathn = url.pathname;
+		console.log(pathn)
+
+		const index = pathn.split("/")
+		console.log(index);
+
+    // Faz o fetch para buscar os dados da despesa
+		fetch(`/editar/search/${index[2]}`)
+      .then(response => response.json())
+      .then(data => {
+        // Preenche os campos com os dados retornados
+        document.getElementById('nome').value = data[0].description || '';
+        document.getElementById('valor').value = data[0].amount || '';
+        document.getElementById('data').value = data[0].date || '';
+        document.getElementById('categoria').value = data[0].category || 'Outros';
+
+				console.log(data);
+      })
+      .catch(error => console.error('Erro ao buscar dados da despesa:', error));
+
+		document.getElementById("edit-form").action = `/editar-despesa/${index[2]}`;
+
+
+		const editForm = document.getElementById("edit-form");
+			editForm.addEventListener("submit", async function(event) {
+				
+				event.preventDefault();
+
+				const desc = document.getElementById('nome').value;
+				const valor = document.getElementById('valor').value;
+				const date = document.getElementById('data').value;
+				const categoria = document.getElementById('categoria').value;
+			
+				const despesa = { desc, valor, date, categoria };
+
+
+				const options = {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(despesa)
+				};
+
+
+				try {
+					const response = await fetch(`/editar-despesa/${index[2]}`, options);
+					console.log(index[2])
+					const data = await response.json();
+
+					if(data.ok) {
+						setTimeout(() => {
+  						window.location.href = '/';
+						}, 200);
+
+						console.log("Postado com sucesso")
+					}else{
+						console.log("Erro ao postar")	
+					}
+				}catch(e) {
+					console.log(e);
+				}
+			})	
+
+		
+</script>
+
+</body>
+</html>
+

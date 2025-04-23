@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+header {
+  background-color: #3498db;
+  padding: 20px;
+  text-align: center;
+  color: white;
+}
+
+section.despesas {
+  padding: 20px;
+}
+
+h2 {
+  color: #2c3e50;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #ecf0f1;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.despesa-item span {
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: 0.3rem;
+}

@@ -1,0 +1,84 @@
+[
+	{
+		"id": 1,
+		"description": "carroaooo",
+		"amount": 100,
+		"date": "2025-04-01",
+		"category": "Saúde"
+	},
+	{
+		"id": 2,
+		"description": "motona do sidnet",
+		"amount": 5000000000,
+		"date": "2025-04-19",
+		"category": "Transporte"
+	},
+	{
+		"id": 3,
+		"description": "pao",
+		"amount": 5,
+		"date": "2025-04-19",
+		"category": "Alimentacão"
+	},
+	{
+		"id": 4,
+		"description": "saque",
+		"amount": 5,
+		"date": "2025-04-20",
+		"category": "Alimentação"
+	},
+	{
+		"description": "Celular",
+		"amount": 1500,
+		"date": "2025-04-03",
+		"category": "Outros"
+	},
+	{
+		"description": "pizza",
+		"amount": 5,
+		"date": "2025-04-23",
+		"category": "Alimentação"
+	},
+	{
+		"description": "dada",
+		"amount": 2222,
+		"date": "2025-04-01",
+		"category": "Lazer"
+	},
+	{
+		"description": "blusa",
+		"amount": 100,
+		"date": "2025-04-14",
+		"category": "Outros"
+	},
+	{
+		"description": "blusa",
+		"amount": 100,
+		"date": "2025-04-14",
+		"category": "Outros"
+	},
+	{
+		"description": "sss",
+		"amount": 222,
+		"date": "2025-04-09",
+		"category": "Saúde"
+	},
+	{
+		"description": "sss",
+		"amount": 222,
+		"date": "2025-04-09",
+		"category": "Saúde"
+	},
+	{
+		"description": "ssss",
+		"amount": 44444,
+		"date": "2025-04-01",
+		"category": "Lazer"
+	},
+	{
+		"description": "compras",
+		"amount": 500,
+		"date": "2025-04-08",
+		"category": "Alimentação"
+	}
+]

@@ -1,0 +1,73 @@
+doctype html
+html
+  head
+    title Controle de Despesas
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="stylesheets/style.css")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap", rel="stylesheet")
+  
+  body
+    .container
+      header.header
+        h1 Controle de Despesas
+        p.subtitulo Organize sua grana de forma simples e rápida.
+
+      main.main-content
+        .card.saldo
+          h2 Saldo Atual
+          p.valor-saldo R$ #{saldo.toFixed(2)}
+
+        .card.lista-despesas
+          h2 Despesas
+          if despesas.length > 0
+            ul.despesas
+              each despesa, index in despesas
+                li.despesa-item
+                  span.desc= despesa.description
+                  span.valor R$ #{typeof despesa.amount === 'number' ? despesa.amount.toFixed(2) : '0,00'}
+                  span.data= despesa.date
+                  span.categoria Categoria: #{despesa.category || 'Não informada'}
+                  
+                  // Botão de editar (link para a rota de edição)
+                  form(action=`/editar/${index}`, method="get")
+                    button(type="submit") Editar
+          else
+            p.sem-despesas Nenhuma despesa registrada.
+
+        .card.formulario
+          h2 Nova Despesa
+          form(id="form-despesa", method="POST")
+            label(for="desc") Descrição
+            input(type="text", name="desc", id="desc", required)
+
+            label(for="valor") Valor (R$)
+            input(type="number", name="valor", id="valor", step="0.01", required)
+
+            label(for="categoria") Categoria
+            select(name="categoria", id="categoria", required)
+              option(value="") Selecione uma categoria
+              option(value="Alimentação") Alimentação
+              option(value="Transporte") Transporte
+              option(value="Moradia") Moradia
+              option(value="Lazer") Lazer
+              option(value="Saúde") Saúde
+              option(value="Educação") Educação
+              option(value="Outros") Outros
+
+            label(for="data") Data
+            input(type="date", name="data", id="data", required)
+
+            button(type="submit") Adicionar
+
+        .card.grafico
+          h2 Gráfico de Saldo (em breve!)
+          p Placeholder para gráfico mensal.
+
+      script(src="/javascripts/form.js")
+      
+      footer.footer
+        p Desenvolvido por Leonardo 🚀
+
