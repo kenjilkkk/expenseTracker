@@ -7,9 +7,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index'); //route handling code
 var usersRouter = require('./routes/users'); //route handling code
 var despesasRouter = require('./api/routes/despesasRoutes') //route handling code
-var editRoutes = require('./api/routes/editarRoutes');
-var updateRoutes = require('./api/routes/updateRoutes');
-
+var editRouter = require('./api/routes/editarRoutes');
+var updateRouter = require('./api/routes/updateRoutes');
+var deleteRouter = require('./api/routes/deleteRoutes');
 
 var app = express();
 
@@ -27,9 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/despesas', despesasRouter)
-app.use('/editar', editRoutes);
-app.use('/editar-despesa', updateRoutes);
-
+app.use('/editar', editRouter);
+app.use('/editar-despesa', updateRouter);
+app.use('/deletar', deleteRouter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

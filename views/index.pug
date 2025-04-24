@@ -25,15 +25,18 @@ html
           if despesas.length > 0
             ul.despesas
               each despesa, index in despesas
-                li.despesa-item
+
+                li.despesa-item(data-index=index)
                   span.desc= despesa.description
                   span.valor R$ #{typeof despesa.amount === 'number' ? despesa.amount.toFixed(2) : '0,00'}
                   span.data= despesa.date
                   span.categoria Categoria: #{despesa.category || 'Não informada'}
-                  
-                  // Botão de editar (link para a rota de edição)
-                  form(action=`/editar/${index}`, method="get")
-                    button(type="submit") Editar
+
+                  .botoes-acoes
+                    form(action=`/editar/${index}`, method="get")
+                      button(type="submit") Editar
+                    form(action=`/deletar/${index}`, method="post")
+                      button(type="submit") Deletar
           else
             p.sem-despesas Nenhuma despesa registrada.
 
