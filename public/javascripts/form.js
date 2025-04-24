@@ -83,7 +83,9 @@
 
       if (response.ok) {
         console.log('Despesa adicionada:', data);
-        window.location.reload(); // recarrega a página pra ver a nova despesa
+				setTimeout(() => {
+					window.location.reload(); // recarrega a página pra ver a nova despesa
+				},200)
       } else {
         alert('Erro ao adicionar despesa');
       }

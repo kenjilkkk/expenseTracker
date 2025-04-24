@@ -22,7 +22,7 @@ const postDespesas = (req, res) => {
 
 	saveJson(data, path);
 	const total = data.reduce((sum, d) => sum + d.amount, 0);
-	res.status(200).render('index', { data,  total })
+	res.json({ok: true});
 }
 
 const getDespesas = (req, res) => {

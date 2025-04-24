@@ -1,1 +1,14 @@
-[]
+[
+	{
+		"description": "pao",
+		"amount": 5,
+		"date": "2025-04-23",
+		"category": "Alimentação"
+	},
+	{
+		"description": "pao",
+		"amount": 5,
+		"date": "2025-04-23",
+		"category": "Alimentação"
+	}
+]

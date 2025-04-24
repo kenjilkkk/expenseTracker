@@ -10,8 +10,8 @@ router.get('/', function(req, res, next) {
   const despesas = getJson(path);
 
 
-  const saldo = 2000 - despesas.reduce((total, d) => total + d.amount, 0);
-  res.render('index', { despesas, saldo});
+  const total = despesas.reduce((total, d) => total + d.amount, 0);
+  res.render('index', { despesas, total});
 });
 
 module.exports = router;
